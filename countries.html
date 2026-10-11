@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050a12">
+
+  <title>GEOWORLD | Country Intelligence</title>
+  <meta name="description" content="Explore countries, capitals, geography, languages, currencies and the world map with GEOWORLD.">
+
+  <!-- Keep your original homepage stylesheet -->
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="countries.css">
+
+  <!-- Interactive map -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
+  <script
+    defer
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+
+  <script type="module" src="countries.js"></script>
+</head>
+
+<body class="country-page">
+
+  <!-- ORIGINAL GEOWORLD NAVBAR -->
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="GEOWORLD home">
+      <span class="brand-symbol">◎</span>
+      <span class="brand-text">
+        GEO<span>WORLD</span>
+        <small>ULTIMATE ATLAS</small>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuButton"
+      aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">HOME</a>
+      <a href="explore.html">EXPLORE</a>
+      <a href="countries.html" class="active">COUNTRIES</a>
+      <a href="map.html">WORLD MAP</a>
+      <a href="landforms.html">LANDFORMS</a>
+      <a href="climate.html">CLIMATE</a>
+      <a href="statistics.html">STATISTICS</a>
+      <a href="quiz.html">QUIZ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="connection"><i></i> SYSTEM ONLINE</span>
+      <button class="logout-button" id="logoutButton">LOG OUT ↗</button>
+    </div>
+  </header>
+
+  <main class="ci-main">
+
+    <!-- HERO -->
+    <section class="ci-hero">
+      <div class="ci-hero-copy">
+        <div class="ci-eyebrow">
+          <span class="ci-pulse"></span>
+          GLOBAL GEOGRAPHIC INTELLIGENCE
+        </div>
+
+        <h1>
+          THE WORLD,<br>
+          <span>DECODED.</span>
+        </h1>
+
+        <p>
+          Explore nations, discover geographic facts, compare regions,
+          and navigate the planet through one interactive atlas.
+        </p>
+
+        <div class="ci-hero-actions">
+          <a href="#countryExplorer" class="ci-primary-button">
+            EXPLORE COUNTRIES <span>↘</span>
+          </a>
+          <a href="#worldMapSection" class="ci-secondary-button">
+            OPEN WORLD MAP
+          </a>
+        </div>
+
+        <div class="ci-live-line">
+          <span class="ci-live-dot"></span>
+          <span id="connectionMessage">INITIALIZING GLOBAL ATLAS</span>
+        </div>
+      </div>
+
+      <div class="ci-orbit" aria-hidden="true">
+        <div class="ci-orbit-ring ci-ring-one"></div>
+        <div class="ci-orbit-ring ci-ring-two"></div>
+        <div class="ci-orbit-ring ci-ring-three"></div>
+        <div class="ci-globe">🌐</div>
+        <span class="ci-orbit-label label-north">N 90°</span>
+        <span class="ci-orbit-label label-east">E 180°</span>
+        <span class="ci-orbit-label label-south">S 90°</span>
+        <span class="ci-orbit-label label-west">W 180°</span>
+      </div>
+    </section>
+
+    <!-- LIVE OVERVIEW -->
+    <section class="ci-metrics" aria-label="Atlas status">
+      <article class="ci-metric">
+        <span class="ci-metric-icon">◉</span>
+        <span class="ci-metric-label">COUNTRY RECORDS</span>
+        <strong id="totalCountries">---</strong>
+        <small>REFERENCE DATASET</small>
+      </article>
+
+      <article class="ci-metric">
+        <span class="ci-metric-icon">⌖</span>
+        <span class="ci-metric-label">MAP ENGINE</span>
+        <strong>ACTIVE</strong>
+        <small>OPENSTREETMAP</small>
+      </article>
+
+      <article class="ci-metric">
+        <span class="ci-metric-icon">⌕</span>
+        <span class="ci-metric-label">SEARCH ENGINE</span>
+        <strong>READY</strong>
+        <small>LIVE FILTERING</small>
+      </article>
+
+      <article class="ci-metric">
+        <span class="ci-metric-icon">↗</span>
+        <span class="ci-metric-label">DATA STATUS</span>
+        <strong id="connectionState">LOAD</strong>
+        <small>PUBLIC DATA SOURCE</small>
+      </article>
+    </section>
+
+    <!-- COUNTRY EXPLORER -->
+    <section class="ci-explorer" id="countryExplorer">
+      <div class="ci-section-heading">
+        <div>
+          <div class="ci-eyebrow">01 / NATIONS DATABASE</div>
+          <h2>COUNTRY <span>EXPLORER</span></h2>
+          <p>Search the atlas and open a country intelligence profile.</p>
+        </div>
+        <div class="ci-record-tag">ATLAS / 001</div>
+      </div>
+
+      <div class="ci-search-panel">
+        <label class="ci-search-box" for="countrySearch">
+          <span>⌕</span>
+          <input
+            id="countrySearch"
+            type="search"
+            placeholder="Search country, capital, language, currency..."
+            autocomplete="off">
+          <kbd>SEARCH</kbd>
+        </label>
+
+        <label class="ci-select-label" for="regionFilter">
+          REGION
+          <select id="regionFilter">
+            <option value="all">All regions</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="ci-results-bar">
+        <span id="resultCount">PREPARING COUNTRY RECORDS...</span>
+        <span class="ci-results-right">
+          <span class="ci-live-dot"></span> ATLAS FEED
+        </span>
+      </div>
+
+      <div class="ci-country-grid" id="countryGrid">
+        <div class="ci-loading">
+          <span class="ci-loader"></span>
+          <strong>INITIALIZING ATLAS</strong>
+          <span>Loading country reference data...</span>
+        </div>
+      </div>
+
+      <button id="loadMoreButton" class="ci-load-more" hidden>
+        LOAD MORE COUNTRIES <span>↓</span>
+      </button>
+
+      <p class="ci-source-note">
+        DATA SOURCE:
+        <a
+          href="https://github.com/mledoze/countries"
+          target="_blank"
+          rel="noopener noreferrer">MLEDŌZE COUNTRIES DATASET ↗</a>
+      </p>
+    </section>
+
+    <!-- WORLD MAP -->
+    <section class="ci-map-section" id="worldMapSection">
+      <div class="ci-section-heading">
+        <div>
+          <div class="ci-eyebrow">02 / GEOSPATIAL SYSTEM</div>
+          <h2>WORLD <span>POSITION</span></h2>
+          <p>Select any country to focus the map on its coordinates.</p>
+        </div>
+        <div class="ci-map-status"><i></i> MAP READY</div>
+      </div>
+
+      <div class="ci-map-frame">
+        <div class="ci-map-topbar">
+          <span>GEOWORLD / GLOBAL VIEW</span>
+          <span>LATITUDE / LONGITUDE</span>
+        </div>
+        <div id="countryMap" aria-label="Interactive world map"></div>
+        <div class="ci-map-footer">
+          <span>INTERACTIVE GLOBAL MAP</span>
+          <span>© OPENSTREETMAP CONTRIBUTORS</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ci-footer">
+      <a href="index.html" class="ci-footer-brand">GEO<span>WORLD</span></a>
+      <span>ONE PLANET. ENDLESS DISCOVERIES.</span>
+      <a href="#countryExplorer">BACK TO EXPLORER ↑</a>
+    </footer>
+
+  </main>
+
+  <!-- COUNTRY DETAILS -->
+  <dialog id="countryDialog" class="ci-dialog">
+    <div class="ci-dialog-top">
+      <span>GEOWORLD / INTELLIGENCE REPORT</span>
+      <button id="closeDialog" aria-label="Close country details">✕</button>
+    </div>
+    <div id="countryDetails"></div>
+  </dialog>
+
+  <div class="ci-toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

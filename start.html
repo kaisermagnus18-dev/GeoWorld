@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEOWORLD | Starting...</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #03070b;
+      color: #65eaff;
+      font-family: Arial, sans-serif;
+    }
+
+    .loader {
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 8px;
+    }
+
+    .text {
+      margin-top: 15px;
+      font-size: 12px;
+      letter-spacing: 4px;
+      opacity: .7;
+    }
+
+    .line {
+      width: 180px;
+      height: 2px;
+      margin: 25px auto 0;
+      background: #65eaff;
+      animation: load 1.2s infinite alternate;
+    }
+
+    @keyframes load {
+      from {
+        opacity: .2;
+        width: 40px;
+      }
+
+      to {
+        opacity: 1;
+        width: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loader">
+    <div class="logo">GEOWORLD</div>
+    <div class="text">AUTHENTICATING EXPLORER</div>
+    <div class="line"></div>
+  </div>
+
+  <script type="module">
+
+    import { auth } from "./firebase.js";
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+
+        // Already logged in
+        window.location.replace("index.html");
+
+      } else {
+
+        // Not logged in
+        window.location.replace("login.html");
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>

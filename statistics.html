@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03070b">
+  <title>GEOWORLD | Earth Statistics</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./statistics.css">
+  <script src="./statistics.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="GEOWORLD home">
+      <span class="brand-symbol">◎</span>
+      <span class="brand-text">GEO<span>WORLD</span><small>ULTIMATE ATLAS</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuButton"
+      aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="./index.html">HOME</a>
+      <a href="./explore.html">EXPLORE</a>
+      <a href="./countries.html">COUNTRIES</a>
+      <a href="./map.html">WORLD MAP</a>
+      <a href="./landforms.html">LANDFORMS</a>
+      <a href="./climate.html">CLIMATE</a>
+      <a href="./statistics.html" class="active">STATISTICS</a>
+      <a href="./quiz.html">QUIZ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="connection"><i></i> SYSTEM ONLINE</span>
+      <button class="logout-button" id="logoutButton">LOG OUT ↗</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> GLOBAL DATA INTELLIGENCE</div>
+        <h1>EARTH <span>STATISTICS</span></h1>
+        <p class="hero-description">
+          Explore population, geography, and regional patterns across our planet.
+          Global data, transformed into a living atlas.
+        </p>
+        <div class="hero-meta">
+          <span><b class="meta-dot"></b> DATA EXPLORER</span>
+          <span>MODULE / 07</span>
+          <span id="lastUpdated">INITIALIZING DATA...</span>
+        </div>
+      </div>
+
+      <div class="earth-visual" aria-label="Stylized planet Earth">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="earth">
+          <div class="earth-grid"></div>
+          <div class="earth-shine"></div>
+        </div>
+        <div class="earth-label label-top">PLANET / 001</div>
+        <div class="earth-label label-bottom">BLUE PLANET · SOL 03</div>
+        <span class="orbit-point"></span>
+      </div>
+    </section>
+
+    <section class="status-strip">
+      <div class="status-left"><span class="status-led"></span><span id="dataStatus">LOCAL DISPLAY READY</span></div>
+      <div class="status-right">SOURCE <b>REST COUNTRIES API</b></div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">01 / PLANET OVERVIEW</div>
+          <h2>Global <span>indicators</span></h2>
+        </div>
+        <span class="section-note">LIVE DATA WHEN AVAILABLE</span>
+      </div>
+
+      <div class="metric-grid">
+        <article class="metric-card metric-highlight">
+          <div class="metric-top"><span>WORLD POPULATION</span><span class="metric-icon">◉</span></div>
+          <div class="metric-value" id="populationMetric">Loading</div>
+          <div class="metric-bottom"><span class="metric-mark"></span> SUM OF REPORTED COUNTRY DATA</div>
+          <div class="metric-line"><i style="width:88%"></i></div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top"><span>COUNTRIES & TERRITORIES</span><span class="metric-icon">⌘</span></div>
+          <div class="metric-value" id="countriesMetric">—</div>
+          <div class="metric-bottom">RECORDS IN CURRENT DATASET</div>
+          <div class="metric-line"><i style="width:69%"></i></div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top"><span>REPORTED LAND AREA</span><span class="metric-icon">◇</span></div>
+          <div class="metric-value" id="areaMetric">—</div>
+          <div class="metric-bottom">SQUARE KILOMETRES · SUM OF RECORDS</div>
+          <div class="metric-line"><i style="width:76%"></i></div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top"><span>WORLD REGIONS</span><span class="metric-icon">⌖</span></div>
+          <div class="metric-value" id="regionsMetric">—</div>
+          <div class="metric-bottom">REGIONS REPRESENTED IN DATA</div>
+          <div class="metric-line"><i style="width:55%"></i></div>
+        </article>
+      </div>
+      <p class="data-footnote">Population and area totals are sums of available country/territory records, not official real-time world estimates.</p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">02 / VISUAL ANALYTICS</div>
+          <h2>Data <span>visualized</span></h2>
+        </div>
+        <span class="section-note">AUTOMATICALLY UPDATED</span>
+      </div>
+
+      <div class="chart-grid">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div><span class="panel-kicker">COUNTRY RANKING</span><h3>Population leaders</h3></div>
+            <span class="panel-index">CH-01</span>
+          </div>
+          <p class="panel-description">The ten most populous countries in the available dataset.</p>
+          <div class="chart-container"><canvas id="leadersChart" aria-label="Bar chart of population leaders"></canvas></div>
+          <div class="chart-legend"><i></i> POPULATION · PEOPLE</div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div><span class="panel-kicker">REGIONAL DISTRIBUTION</span><h3>Countries by region</h3></div>
+            <span class="panel-index">CH-02</span>
+          </div>
+          <p class="panel-description">How country records are distributed across world regions.</p>
+          <div id="regionChart" class="region-chart">
+            <div class="chart-empty">Waiting for data...</div>
+          </div>
+          <div id="regionLegend" class="region-legend"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">03 / COUNTRY DATABASE</div>
+          <h2>Global <span>index</span></h2>
+        </div>
+        <span class="section-note" id="resultCount">PREPARING INDEX</span>
+      </div>
+
+      <div class="panel table-panel">
+        <div class="table-toolbar">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="countrySearch" type="search" placeholder="Search a country..." autocomplete="off">
+          </label>
+
+          <select id="regionFilter" aria-label="Filter by region">
+            <option value="all">All regions</option>
+          </select>
+
+          <select id="sortFilter" aria-label="Sort country records">
+            <option value="population">Population: high to low</option>
+            <option value="name">Country name: A–Z</option>
+            <option value="area">Area: high to low</option>
+          </select>
+
+          <button class="reset-button" id="resetFilters">RESET ↺</button>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>COUNTRY</th>
+                <th>REGION</th>
+                <th>CAPITAL</th>
+                <th>POPULATION</th>
+                <th>AREA (KM²)</th>
+              </tr>
+            </thead>
+            <tbody id="countryTableBody">
+              <tr><td colspan="5" class="table-message">Loading country records...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span id="tableSummary">Preparing country index...</span>
+          <div class="pagination">
+            <button id="prevPage" disabled>← PREVIOUS</button>
+            <span id="pageNumber">01 / 01</span>
+            <button id="nextPage" disabled>NEXT →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight-grid">
+      <article class="panel insight-panel">
+        <div class="eyebrow">04 / DATA INSIGHT</div>
+        <h3>Population leader</h3>
+        <p id="populationInsight">Country rankings will appear when records are available.</p>
+      </article>
+      <article class="panel insight-panel">
+        <div class="eyebrow">05 / GEOGRAPHIC INSIGHT</div>
+        <h3>Largest recorded area</h3>
+        <p id="areaInsight">Geographic rankings will appear when records are available.</p>
+      </article>
+    </section>
+
+    <footer class="page-footer">
+      <a class="footer-brand" href="./index.html">◎ GEOWORLD</a>
+      <span>ONE PLANET. ENDLESS DISCOVERY.</span>
+      <span>STATISTICS MODULE / 07</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>

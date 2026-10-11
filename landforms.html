@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050a12">
+  <title>GEOWORLD | Landform Intelligence</title>
+  <meta name="description" content="Explore Earth's mountains, plateaus, deserts, valleys, glaciers, coastlines and geological wonders.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="landforms.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="GEOWORLD home">
+      <span class="brand-symbol">◎</span>
+      <span class="brand-text">GEO<span>WORLD</span><small>ULTIMATE ATLAS</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">HOME</a>
+      <a href="explore.html">EXPLORE</a>
+      <a href="countries.html">COUNTRIES</a>
+      <a href="map.html">WORLD MAP</a>
+      <a class="active" href="landforms.html">LANDFORMS</a>
+      <a href="climate.html">CLIMATE</a>
+      <a href="statistics.html">STATISTICS</a>
+      <a href="quiz.html">QUIZ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="connection"><i></i> SYSTEM ONLINE</span>
+      <a class="logout-button" href="index.html">HOME ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> GEOSCIENCE DIVISION / 001</div>
+        <h1>THE SHAPE<br>OF <span>EARTH.</span></h1>
+        <p class="hero-description">
+          Explore the forces that sculpt our planet. From towering mountain
+          ranges to deep ocean trenches, discover the science, stories and
+          geography behind Earth's extraordinary landscapes.
+        </p>
+        <div class="hero-actions">
+          <a href="#atlas" class="primary-action">EXPLORE THE ATLAS <span>↘</span></a>
+          <a href="#earth-map" class="secondary-action">OPEN TERRAIN MAP</a>
+        </div>
+        <div class="hero-meta">
+          <span>PHYSICAL GEOGRAPHY</span>
+          <span>GEOLOGY</span>
+          <span>EARTH SYSTEMS</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1500&q=90" alt="Dramatic mountain range">
+          <div class="image-shade"></div>
+          <div class="image-topline"><span>FIELD IMAGE / 001</span><span>EARTH OBSERVATION</span></div>
+          <div class="image-caption">
+            <span class="caption-label">TERRAIN STUDY</span>
+            <h2>Nature has a structure.</h2>
+            <p>Every landscape tells a geological story.</p>
+          </div>
+          <div class="coordinate-chip">27°59′ N · 86°55′ E</div>
+          <div class="scan-line"></div>
+        </div>
+        <div class="floating-tag tag-top"><span>◈</span> PLANETARY RELIEF</div>
+        <div class="floating-tag tag-bottom"><span>●</span> LIVE ATLAS VIEW</div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Atlas overview">
+      <div class="metric"><span class="metric-label">ATLAS RECORDS</span><strong id="recordCount">24</strong><small>FEATURED LANDSCAPES</small></div>
+      <div class="metric"><span class="metric-label">CLASSIFICATIONS</span><strong>12<span>+</span></strong><small>MAJOR TERRAIN GROUPS</small></div>
+      <div class="metric"><span class="metric-label">PLANET COVERAGE</span><strong>01<span>×</span></strong><small>ONE CONNECTED EARTH</small></div>
+      <div class="metric"><span class="metric-label">EXPLORATION MODE</span><strong class="online-text">ACTIVE</strong><small>SEARCH · FILTER · DISCOVER</small></div>
+    </section>
+
+    <section class="section" id="atlas">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">01 / DISCOVERY DATABASE</div>
+          <h2>Terrain <span>intelligence.</span></h2>
+          <p>Search landscapes, investigate their origins and uncover the processes that shaped them.</p>
+        </div>
+        <div class="result-counter"><span id="visibleCount">24</span> RECORDS DISPLAYED</div>
+      </div>
+
+      <div class="search-panel">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search a landform, country, process or feature..." autocomplete="off">
+          <kbd>SEARCH</kbd>
+        </label>
+        <div class="filter-row">
+          <div class="filter-chips" id="filterChips">
+            <button class="filter-chip selected" data-category="All">ALL TERRAIN</button>
+            <button class="filter-chip" data-category="Mountains">MOUNTAINS</button>
+            <button class="filter-chip" data-category="Plateaus">PLATEAUS</button>
+            <button class="filter-chip" data-category="Plains">PLAINS</button>
+            <button class="filter-chip" data-category="Deserts">DESERTS</button>
+            <button class="filter-chip" data-category="Valleys">VALLEYS & CANYONS</button>
+            <button class="filter-chip" data-category="Coastal">COASTAL</button>
+            <button class="filter-chip" data-category="Glacial">GLACIAL</button>
+            <button class="filter-chip" data-category="Other">OTHER</button>
+          </div>
+          <select id="sortSelect" aria-label="Sort landforms">
+            <option value="featured">SORT: FEATURED</option>
+            <option value="name">SORT: NAME A–Z</option>
+            <option value="elevation">SORT: ELEVATION</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="landform-grid" id="landformGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span>⌕</span>
+        <h3>No terrain records found</h3>
+        <p>Try another keyword or select a different category.</p>
+        <button id="resetSearch">RESET EXPLORATION</button>
+      </div>
+    </section>
+
+    <section class="feature-strip">
+      <div class="feature-copy">
+        <div class="eyebrow">02 / PLANETARY PROCESSES</div>
+        <h2>Landscapes are<br>never <span>still.</span></h2>
+        <p>Earth's surface is constantly shaped by internal forces and external processes. Rock can be uplifted, fractured, weathered, carried away and deposited somewhere new.</p>
+        <a href="#processes" class="text-link">UNDERSTAND THE PROCESS ↗</a>
+      </div>
+      <div class="process-visual">
+        <div class="process-orbit orbit-a"></div>
+        <div class="process-orbit orbit-b"></div>
+        <div class="process-core">EARTH<br><span>SYSTEMS</span></div>
+        <div class="process-node node-one"><b>01</b><span>TECTONICS</span></div>
+        <div class="process-node node-two"><b>02</b><span>EROSION</span></div>
+        <div class="process-node node-three"><b>03</b><span>DEPOSITION</span></div>
+        <div class="process-node node-four"><b>04</b><span>VOLCANISM</span></div>
+      </div>
+    </section>
+
+    <section class="section process-section" id="processes">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">03 / HOW EARTH IS SCULPTED</div>
+          <h2>Forces that shape <span>terrain.</span></h2>
+          <p>Explore the major processes behind Earth's landforms.</p>
+        </div>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="process-icon">↗</div>
+          <span class="process-index">PROCESS / 01</span>
+          <h3>Tectonic uplift</h3>
+          <p>Movement and collision of Earth's plates can fold, fracture and raise the crust, creating mountain belts, high plateaus and fault-block landscapes.</p>
+          <div class="process-example">EXAMPLE <span>Himalayas</span></div>
+        </article>
+        <article class="process-card">
+          <div class="process-icon">⌁</div>
+          <span class="process-index">PROCESS / 02</span>
+          <h3>Weathering & erosion</h3>
+          <p>Rock breaks down through physical and chemical weathering. Water, wind, ice and gravity then transport material and reshape slopes.</p>
+          <div class="process-example">EXAMPLE <span>Grand Canyon</span></div>
+        </article>
+        <article class="process-card">
+          <div class="process-icon">▽</div>
+          <span class="process-index">PROCESS / 03</span>
+          <h3>Deposition</h3>
+          <p>When flowing water, wind or ice loses energy, it can deposit sediment and build floodplains, deltas, dunes and alluvial fans.</p>
+          <div class="process-example">EXAMPLE <span>Ganges–Brahmaputra Delta</span></div>
+        </article>
+        <article class="process-card">
+          <div class="process-icon">◉</div>
+          <span class="process-index">PROCESS / 04</span>
+          <h3>Volcanic activity</h3>
+          <p>Lava, ash and other erupted material can build volcanic cones and broad plateaus. Magma also cools underground to form intrusive rock.</p>
+          <div class="process-example">EXAMPLE <span>Mount Fuji</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="map-section" id="earth-map">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">04 / SPATIAL EXPLORER</div>
+          <h2>Locate the <span>landscape.</span></h2>
+          <p>Choose a marker to inspect a featured landform and its geographic position.</p>
+        </div>
+        <div class="map-status"><i></i> INTERACTIVE MAP</div>
+      </div>
+      <div class="map-shell">
+        <div id="terrainMap" aria-label="Interactive map showing featured landforms"></div>
+        <aside class="map-side">
+          <div class="eyebrow">SELECTED LOCATION</div>
+          <div class="map-preview" id="mapPreview">
+            <span class="preview-icon">◎</span>
+            <h3>Explore the map</h3>
+            <p>Select a map marker or a landform card to inspect a location.</p>
+          </div>
+          <div class="map-coordinates" id="mapCoordinates">COORDINATES: —</div>
+          <button class="map-reset" id="resetMap">RESET MAP VIEW ↺</button>
+        </aside>
+      </div>
+      <p class="map-note">Map tiles and terrain images require an internet connection. Marker positions are representative geographic locations, not detailed geological boundaries.</p>
+    </section>
+
+    <section class="source-note">
+      <div class="source-symbol">ⓘ</div>
+      <div>
+        <strong>GEOGRAPHIC DATA NOTE</strong>
+        <p>This is an educational showcase, not a complete scientific inventory. Elevations and measurements may use different reference datums and can vary by source. Check the linked references in each profile for authoritative information.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html">GEO<span>WORLD</span></a>
+    <p>ONE PLANET. ENDLESS DISCOVERIES.</p>
+    <span>LANDform INTELLIGENCE / GEOWORLD ULTIMATE</span>
+  </footer>
+
+  <div class="modal-backdrop" id="detailModal" hidden>
+    <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close details">×</button>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="landforms.js"></script>
+</body>
+</html>

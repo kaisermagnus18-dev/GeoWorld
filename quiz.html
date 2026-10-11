@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050a12">
+  <title>GEOWORLD | Ultimate Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="GEOWORLD home">
+    <span class="brand-symbol">◎</span>
+    <span class="brand-text">GEO<span>WORLD</span><small>ULTIMATE ATLAS</small></span>
+  </a>
+
+  <button class="menu-toggle" id="menuButton"
+    aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">HOME</a>
+    <a href="explore.html">EXPLORE</a>
+    <a href="countries.html">COUNTRIES</a>
+    <a href="map.html">WORLD MAP</a>
+    <a href="landforms.html">LANDFORMS</a>
+    <a href="climate.html">CLIMATE</a>
+    <a href="statistics.html">STATISTICS</a>
+    <a href="quiz.html" class="active">QUIZ</a>
+  </nav>
+
+  <div class="topbar-right">
+    <span class="connection"><i></i> SYSTEM ONLINE</span>
+    <button class="logout-button" id="logoutButton">LOG OUT ↗</button>
+  </div>
+</header>
+
+
+<main class="shell">
+  <section class="hero">
+    <div><p class="eyebrow">GEOGRAPHIC KNOWLEDGE ENGINE / 01</p><h1>EARTH <span>CHALLENGE</span></h1><p class="muted">Explore the planet. Master the map. Become a legend.</p></div>
+    <div class="profile panel"><small>YOUR EXPLORER PROFILE</small><h3 id="levelValue">LEVEL 1</h3><p id="rankValue">ROOKIE EXPLORER</p><div class="track"><span id="xpProgress"></span></div><small id="xpLabel">0 XP</small></div>
+  </section>
+
+  <section id="lobbyScreen">
+    <div class="heading"><div><p class="eyebrow">MISSION SELECT</p><h2>Choose your difficulty</h2></div><span class="tag">50 QUESTIONS</span></div>
+    <div class="modes">
+      <button class="mode selected" data-mode="easy"><small>01 / TRAINING</small><b>EASY</b><span>25 seconds · 10 XP</span></button>
+      <button class="mode" data-mode="normal"><small>02 / FIELDWORK</small><b>NORMAL</b><span>20 seconds · 15 XP</span></button>
+      <button class="mode" data-mode="hard"><small>03 / ADVANCED</small><b>HARD</b><span>16 seconds · 20 XP</span></button>
+      <button class="mode" data-mode="nightmare"><small>04 / EXTREME</small><b>NIGHTMARE</b><span>12 seconds · 30 XP</span></button>
+      <button class="mode hell" data-mode="hell"><small>05 / SURVIVAL</small><b>HELL</b><span>9 seconds · 50 XP</span></button>
+    </div>
+
+    <div class="columns">
+      <article class="panel pad">
+        <div class="heading"><div><p class="eyebrow">DAILY OPERATIONS</p><h3>Daily missions</h3></div><span class="tag">DAILY</span></div>
+        <div id="missionList"></div>
+      </article>
+      <article class="panel pad">
+        <div class="heading"><div><p class="eyebrow">TACTICAL LOADOUT</p><h3>Power-ups</h3></div></div>
+        <div class="inventory">
+          <p>½ <span>50 / 50<small>Remove two wrong answers</small></span><b id="lobbyFifty">1</b></p>
+          <p>Ⅱ <span>TIME FREEZE<small>Pause the timer for 8 seconds</small></span><b id="lobbyFreeze">1</b></p>
+          <p>↺ <span>SECOND CHANCE<small>Retry one incorrect answer</small></span><b id="lobbySecond">1</b></p>
+        </div>
+      </article>
+    </div>
+    <div class="actions"><button id="startQuizBtn" class="btn primary">INITIALIZE MISSION →</button><button id="openLeaderboardBtn" class="btn outline">GLOBAL LEADERBOARD</button></div>
+  </section>
+
+  <section id="gameScreen" class="hidden">
+    <div class="gamebar"><button id="exitQuizBtn" class="btn quiet">← EXIT</button><span class="tag" id="gameModeTag">EASY</span><span>QUESTION <b id="questionNumber">1</b>/50</span><span>SCORE <b id="scoreValue">0</b></span></div>
+    <div class="track progress"><span id="questionProgress"></span></div>
+    <article class="panel question">
+      <div class="heading"><p class="eyebrow" id="questionCategory">WORLD GEOGRAPHY</p><div class="timer"><b id="timerValue">25</b><small>SEC</small></div></div>
+      <h2 id="questionText">Preparing your mission...</h2>
+      <div id="answerOptions" class="answers"></div>
+      <p id="feedbackBox" class="feedback hidden" aria-live="polite"></p>
+      <div class="question-actions"><button id="hintBtn" class="btn outline">◈ HINT</button><span id="hintText" class="hint hidden"></span><button id="nextQuestionBtn" class="btn primary" disabled>NEXT →</button></div>
+    </article>
+    <div class="powerbar">
+      <strong>EMERGENCY SYSTEMS</strong>
+      <button id="fiftyBtn" class="power" ><b>½  50/50</b><small id="fiftyCount">1 LEFT</small></button>
+      <button id="freezeBtn" class="power"><b>Ⅱ  TIME FREEZE</b><small id="freezeCount">1 LEFT</small></button>
+      <button id="secondBtn" class="power"><b>↺  SECOND CHANCE</b><small id="secondCount">1 LEFT</small></button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="hidden">
+    <article class="panel results">
+      <p class="eyebrow">MISSION REPORT / COMPLETE</p><div class="emblem">✦</div>
+      <h2 id="resultTitle">MISSION COMPLETE</h2><p id="resultMessage" class="muted"></p>
+      <div class="result-grid">
+        <div><small>FINAL SCORE</small><b id="finalScore">0</b></div>
+        <div><small>ACCURACY</small><b id="accuracyValue">0%</b></div>
+        <div><small>XP EARNED</small><b id="xpEarned">+0</b></div>
+        <div><small>CORRECT</small><b id="correctValue">0/50</b></div>
+      </div>
+      <p id="bossResult" class="boss-result hidden"></p>
+      <div class="actions"><button id="retryQuizBtn" class="btn primary">RUN AGAIN ↻</button><button id="returnLobbyBtn" class="btn outline">LOBBY</button><button id="resultsLeaderboardBtn" class="btn quiet">LEADERBOARD</button></div>
+    </article>
+  </section>
+
+  <section id="leaderboardScreen" class="hidden">
+    <div class="heading"><div><p class="eyebrow">GLOBAL RANKING NETWORK</p><h2>Leaderboard</h2></div><button id="backToLobbyBtn" class="btn outline">← BACK</button></div>
+    <article class="panel leaderboard"><div class="leaderhead"><span>RANK</span><span>EXPLORER</span><span>LEVEL</span><span>TOTAL XP</span></div><div id="leaderboardList">Loading...</div></article>
+  </section>
+  <footer>GEOWORLD © 2026 <span>BUILT FOR THE CURIOUS · POWERED BY EARTH</span></footer>
+</main>
+
+<div id="bossModal" class="modal hidden">
+  <article class="panel boss">
+    <p class="eyebrow">⚠ ELITE ENCOUNTER DETECTED</p><div class="emblem">B</div>
+    <h2>THE ATLAS GUARDIAN</h2><p id="bossPrompt">Prove your geographical knowledge.</p>
+    <div id="bossOptions" class="answers"></div><p id="bossFeedback" class="feedback hidden"></p>
+    <button id="bossContinueBtn" class="btn primary hidden">CLAIM MISSION REPORT →</button>
+  </article>
+</div>
+<div id="toast" class="toast"></div>
+<script type="module" src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03070b">
+  <title>GEOWORLD | World Map</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./map.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="./map.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="GEOWORLD home">
+      <span class="brand-symbol">◎</span>
+      <span class="brand-text">GEO<span>WORLD</span><small>ULTIMATE ATLAS</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="./index.html">HOME</a>
+      <a href="./explore.html">EXPLORE</a>
+      <a href="./countries.html">COUNTRIES</a>
+      <a href="./map.html" class="active">WORLD MAP</a>
+      <a href="./landforms.html">LANDFORMS</a>
+      <a href="./climate.html">CLIMATE</a>
+      <a href="./statistics.html">STATISTICS</a>
+      <a href="./quiz.html">QUIZ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="connection"><i></i> SYSTEM ONLINE</span>
+      <button class="logout-button" id="logoutButton">LOG OUT ↗</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> GEOSPATIAL EXPLORATION SYSTEM</div>
+        <h1>THE WORLD.<br><span>YOUR VIEW.</span></h1>
+        <p class="hero-description">
+          Navigate continents, discover destinations, and explore our planet
+          through an interactive global atlas.
+        </p>
+        <div class="hero-meta">
+          <span><b class="meta-dot"></b> INTERACTIVE ATLAS</span>
+          <span>MODULE / 04</span>
+          <span>ZOOM · PAN · DISCOVER</span>
+        </div>
+      </div>
+
+      <div class="hero-orb" aria-hidden="true">
+        <div class="orb-ring ring-a"></div>
+        <div class="orb-ring ring-b"></div>
+        <div class="orb-core">EARTH<span>01</span></div>
+        <span class="orb-point"></span>
+      </div>
+    </section>
+
+    <section class="map-status">
+      <div><i class="status-led"></i><span id="mapStatus">INITIALIZING MAP...</span></div>
+      <div class="coordinates">LAT <b id="latitude">—</b> &nbsp; LNG <b id="longitude">—</b></div>
+    </section>
+
+    <section class="map-workspace">
+      <aside class="map-sidebar">
+        <div class="side-heading">
+          <div class="eyebrow">01 / LOCATION INTELLIGENCE</div>
+          <h2>Find a <span>place</span></h2>
+          <p>Search for a city, country, landmark, or address.</p>
+        </div>
+
+        <form id="placeSearchForm" class="search-form">
+          <label for="placeSearch">DESTINATION</label>
+          <div class="search-field">
+            <span>⌕</span>
+            <input id="placeSearch" type="search" placeholder="e.g. Tokyo, Japan" autocomplete="off" required>
+          </div>
+          <button type="submit" id="searchButton">LOCATE DESTINATION <span>↗</span></button>
+          <p class="search-hint">Search requires an internet connection.</p>
+        </form>
+
+        <div class="side-divider"></div>
+
+        <div class="side-section-title">
+          <span>FEATURED LOCATIONS</span>
+          <span class="small-index">02 / 06</span>
+        </div>
+
+        <div class="destination-list">
+          <button class="destination" data-place="New Delhi, India">
+            <span class="destination-number">01</span>
+            <span class="destination-copy"><b>New Delhi</b><small>INDIA · ASIA</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+          <button class="destination" data-place="Tokyo, Japan">
+            <span class="destination-number">02</span>
+            <span class="destination-copy"><b>Tokyo</b><small>JAPAN · ASIA</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+          <button class="destination" data-place="Cairo, Egypt">
+            <span class="destination-number">03</span>
+            <span class="destination-copy"><b>Cairo</b><small>EGYPT · AFRICA</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+          <button class="destination" data-place="London, United Kingdom">
+            <span class="destination-number">04</span>
+            <span class="destination-copy"><b>London</b><small>UNITED KINGDOM · EUROPE</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+          <button class="destination" data-place="New York City, USA">
+            <span class="destination-number">05</span>
+            <span class="destination-copy"><b>New York City</b><small>USA · AMERICAS</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+          <button class="destination" data-place="Sydney, Australia">
+            <span class="destination-number">06</span>
+            <span class="destination-copy"><b>Sydney</b><small>AUSTRALIA · OCEANIA</small></span>
+            <span class="destination-arrow">↗</span>
+          </button>
+        </div>
+
+        <div class="side-divider"></div>
+
+        <div class="side-section-title"><span>MAP CONTROLS</span><span class="small-index">03</span></div>
+        <div class="control-buttons">
+          <button id="zoomIn">＋ <span>ZOOM IN</span></button>
+          <button id="zoomOut">－ <span>ZOOM OUT</span></button>
+          <button id="resetMap">◎ <span>RESET WORLD VIEW</span></button>
+          <button id="locateMe">⌖ <span>MY LOCATION</span></button>
+        </div>
+
+        <p class="sidebar-footnote">Location access is optional and only requested when you select MY LOCATION.</p>
+      </aside>
+
+      <section class="map-panel">
+        <div class="map-toolbar">
+          <div class="map-toolbar-title">
+            <span class="live-square"></span>
+            <div><b>GLOBAL ATLAS</b><small id="mapViewLabel">WORLD OVERVIEW</small></div>
+          </div>
+
+          <label class="layer-select-wrap">
+            <span>MAP LAYER</span>
+            <select id="mapLayer" aria-label="Map layer">
+              <option value="dark">DARK ATLAS</option>
+              <option value="street">STREET MAP</option>
+              <option value="satellite">SATELLITE</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="worldMap" role="application" aria-label="Interactive world map">
+          <div class="map-loading" id="mapLoading">
+            <div class="loading-ring"></div>
+            <b>CONNECTING TO ATLAS</b>
+            <span>Preparing global map tiles...</span>
+          </div>
+        </div>
+
+        <div class="map-bottom-bar">
+          <span><i class="legend-dot"></i> MAP READY</span>
+          <span>SCROLL TO ZOOM · DRAG TO EXPLORE</span>
+          <button id="clearMarker">CLEAR SELECTION ×</button>
+        </div>
+
+        <div class="location-card" id="locationCard">
+          <div class="location-card-icon">⌖</div>
+          <div class="location-card-copy">
+            <span class="eyebrow">SELECTED COORDINATES</span>
+            <h3 id="selectedPlace">Choose a location</h3>
+            <p id="selectedDetails">Search above or click anywhere on the map.</p>
+          </div>
+          <button id="openExternalMap" disabled>OPEN MAP ↗</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="explore-footer">
+      <div>
+        <div class="eyebrow">KEEP EXPLORING</div>
+        <h2>One planet. <span>Infinite places.</span></h2>
+      </div>
+      <a href="./countries.html">EXPLORE COUNTRIES <span>↗</span></a>
+    </section>
+
+    <footer class="page-footer">
+      <a class="footer-brand" href="./index.html">◎ GEOWORLD</a>
+      <span>ONE PLANET. ENDLESS DISCOVERY.</span>
+      <span>MAP DATA © OPENSTREETMAP CONTRIBUTORS</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>

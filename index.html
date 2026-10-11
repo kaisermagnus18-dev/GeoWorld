@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03070d">
+  <meta name="description" content="GEOWORLD ULTIMATE — Explore our planet, discover countries, and unlock the secrets of Earth.">
+  <title>GEOWORLD ULTIMATE | Earth Command Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="home.css">
+  <script type="module" src="script.js"></script>
+</head>
+
+<body>
+  <div class="background-grid"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="GEOWORLD home">
+      <span class="brand-symbol">◎</span>
+      <span class="brand-text">GEO<span>WORLD</span><small>ULTIMATE ATLAS</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuButton" aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="active">HOME</a>
+      <a href="explore.html">EXPLORE</a>
+      <a href="countries.html">COUNTRIES</a>
+      <a href="map.html">WORLD MAP</a>
+      <a href="landforms.html">LANDFORMS</a>
+      <a href="climate.html">CLIMATE</a>
+      <a href="statistics.html">STATISTICS</a>
+      <a href="quiz.html">QUIZ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="connection"><i></i> SYSTEM ONLINE</span>
+      <button class="logout-button" id="logoutButton">LOG OUT ↗</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-row">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> EARTH INTELLIGENCE NETWORK</div>
+        <h1>THE PLANET IS<br><span>YOUR FRONTIER.</span></h1>
+        <p class="welcome-copy">
+          Discover new worlds within our own. Explore continents, decode climates,
+          and uncover the extraordinary data shaping planet Earth.
+        </p>
+        <div class="hero-actions">
+          <a class="button-primary" href="explore.html">BEGIN EXPLORATION <span>↗</span></a>
+          <a class="button-secondary" href="map.html">OPEN WORLD MAP <span>⌖</span></a>
+        </div>
+      </div>
+
+      <div class="earth-stage">
+        <div class="earth-coordinate coordinate-top">EARTH / 001</div>
+        <div class="orbit orbit-outer"></div>
+        <div class="orbit orbit-inner"></div>
+        <div class="earth-glow"></div>
+        <div class="earth">
+          <img
+            src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=85"
+            alt="Planet Earth viewed from space">
+        </div>
+        <div class="orbit-dot"></div>
+        <div class="earth-coordinate coordinate-bottom">BLUE PLANET // SOL-03</div>
+        <div class="earth-target"><span>+</span></div>
+      </div>
+    </section>
+
+    <section class="metrics-grid" aria-label="World facts">
+      <article class="metric-card">
+        <span class="metric-label">RECOGNIZED COUNTRIES</span>
+        <div class="metric-value">195<span class="metric-mark">+</span></div>
+        <span class="metric-foot"><i></i> GLOBAL ATLAS</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">CONTINENTS</span>
+        <div class="metric-value">07</div>
+        <span class="metric-foot"><i></i> LAND SYSTEMS</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">WORLD OCEANS</span>
+        <div class="metric-value">05</div>
+        <span class="metric-foot"><i></i> BLUE FRONTIER</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">YOUR DISCOVERIES</span>
+        <div class="metric-value" id="discoveryCount">00</div>
+        <span class="metric-foot"><i></i> EXPLORER RECORD</span>
+      </article>
+    </section>
+
+    <section class="workspace-grid">
+      <article class="panel explorer-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-index">01 / PERSONNEL</span>
+            <h2>EXPLORER PROFILE</h2>
+          </div>
+          <span class="live-tag"><i></i> ACTIVE</span>
+        </div>
+
+        <div class="profile-main">
+          <div class="avatar-ring"><span id="avatarInitial">E</span></div>
+          <div class="profile-identity">
+            <span class="muted-label">WELCOME BACK, EXPLORER</span>
+            <h3 id="explorerName">LOADING...</h3>
+            <p id="explorerEmail">Connecting to Firebase...</p>
+          </div>
+        </div>
+
+        <div class="rank-row">
+          <div>
+            <span class="muted-label">CURRENT RANK</span>
+            <strong id="explorerRank">ROOKIE EXPLORER</strong>
+          </div>
+          <div class="level-chip" id="explorerLevel">LEVEL 1</div>
+        </div>
+
+        <div class="xp-heading">
+          <span>EXPERIENCE POINTS</span>
+          <strong id="explorerXp">0 XP</strong>
+        </div>
+        <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+        <div class="xp-foot">
+          <span id="xpProgressText">0 / 100 XP to next level</span>
+          <span id="xpPercent">0%</span>
+        </div>
+
+        <p class="profile-note" id="profileStatus">Synchronizing explorer data...</p>
+      </article>
+
+      <article class="panel quick-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-index">02 / OPERATIONS</span>
+            <h2>QUICK DEPLOYMENT</h2>
+          </div>
+          <span class="panel-symbol">⌘</span>
+        </div>
+
+        <a class="operation-link" href="countries.html">
+          <span class="operation-icon">◎</span>
+          <span class="operation-copy"><strong>Country Intelligence</strong><small>Explore nations and their data</small></span>
+          <span class="operation-arrow">↗</span>
+        </a>
+        <a class="operation-link" href="map.html">
+          <span class="operation-icon">⌖</span>
+          <span class="operation-copy"><strong>Global Mapping</strong><small>Navigate the world map</small></span>
+          <span class="operation-arrow">↗</span>
+        </a>
+        <a class="operation-link" href="landforms.html">
+          <span class="operation-icon">⛰</span>
+          <span class="operation-copy"><strong>Earth's Landforms</strong><small>Mountains, valleys and plains</small></span>
+          <span class="operation-arrow">↗</span>
+        </a>
+        <a class="operation-link" href="climate.html">
+          <span class="operation-icon">◉</span>
+          <span class="operation-copy"><strong>Climate Systems</strong><small>Discover Earth's environments</small></span>
+          <span class="operation-arrow">↗</span>
+        </a>
+      </article>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title-row">
+        <div>
+          <span class="section-index">03 / DISCOVERY NETWORK</span>
+          <h2>CHOOSE YOUR NEXT MISSION</h2>
+        </div>
+        <span class="section-side-note">SELECT A MODULE <span>↘</span></span>
+      </div>
+
+      <div class="mission-grid">
+        <a class="mission-card mission-countries" href="countries.html">
+          <div class="mission-top"><span>MODULE 01</span><span>↗</span></div>
+          <div class="mission-icon">🌐</div>
+          <h3>WORLD ATLAS</h3>
+          <p>Discover countries, capitals, populations, flags, and geographic data.</p>
+          <span class="mission-cta">ENTER ATLAS <b>→</b></span>
+        </a>
+
+        <a class="mission-card mission-map" href="map.html">
+          <div class="mission-top"><span>MODULE 02</span><span>↗</span></div>
+          <div class="mission-icon">⌖</div>
+          <h3>GLOBAL MAP</h3>
+          <p>Navigate continents and explore the locations that shape our planet.</p>
+          <span class="mission-cta">OPEN MAP <b>→</b></span>
+        </a>
+
+        <a class="mission-card mission-land" href="landforms.html">
+          <div class="mission-top"><span>MODULE 03</span><span>↗</span></div>
+          <div class="mission-icon">⛰</div>
+          <h3>LAND & OCEAN</h3>
+          <p>Investigate mountains, islands, rivers, deserts, and ocean systems.</p>
+          <span class="mission-cta">EXPLORE TERRAIN <b>→</b></span>
+        </a>
+
+        <a class="mission-card mission-quiz" href="quiz.html">
+          <div class="mission-top"><span>MODULE 04</span><span>↗</span></div>
+          <div class="mission-icon">⌁</div>
+          <h3>GEO CHALLENGE</h3>
+          <p>Test your geography knowledge and work toward your next rank.</p>
+          <span class="mission-cta">START CHALLENGE <b>→</b></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="bottom-banner">
+      <div class="banner-mark">G<span>◎</span></div>
+      <div>
+        <span class="section-index">YOUR NEXT OBJECTIVE</span>
+        <h2>KNOW MORE. GO FURTHER.</h2>
+        <p>Every place has a story. Start discovering yours.</p>
+      </div>
+      <a href="quiz.html" class="button-primary">ACCEPT MISSION ↗</a>
+    </section>
+
+    <footer class="footer">
+      <a class="footer-brand" href="index.html">GEOWORLD <span>ULTIMATE</span></a>
+      <p>ONE PLANET. INFINITE DISCOVERIES.</p>
+      <span>EARTH SYSTEMS // ONLINE</span>
+    </footer>
+  </main>
+</body>
+</html>

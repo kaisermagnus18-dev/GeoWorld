@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03070b">
+  <title>GEOWORLD | Explorer Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="login.css">
+  <script type="module" src="login.js"></script>
+</head>
+<body>
+  <div class="background-grid"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="auth-nav">
+    <a class="brand" href="login.html">
+      <span>GEO</span>WORLD <b>◎</b>
+    </a>
+    <span class="nav-status"><i></i> EARTH NETWORK ONLINE</span>
+  </header>
+
+  <main class="auth-layout">
+    <section class="auth-intro">
+      <div class="eyebrow"><span></span> GEOWORLD / ACCESS TERMINAL</div>
+      <h1>YOUR PLANET.<br><span>YOUR JOURNEY.</span></h1>
+      <p>Enter a world of geography, exploration, discoveries and knowledge. Your next expedition begins here.</p>
+
+      <div class="planet-visual" aria-hidden="true">
+        <div class="planet-orbit orbit-a"></div>
+        <div class="planet-orbit orbit-b"></div>
+        <div class="planet-orbit orbit-c"></div>
+        <div class="planet">
+          <div class="planet-surface"></div>
+          <div class="planet-shade"></div>
+        </div>
+        <span class="planet-label label-a">EARTH / 001</span>
+        <span class="planet-label label-b">SYSTEM ACTIVE</span>
+      </div>
+
+      <div class="intro-footer">
+        <span>195 COUNTRIES</span>
+        <span>07 CONTINENTS</span>
+        <span>ONE PLANET</span>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="card-topline">
+        <span>EXPLORER AUTHENTICATION</span>
+        <span class="secure-mark">✳ SECURE</span>
+      </div>
+
+      <div class="card-heading">
+        <div class="mini-symbol">◎</div>
+        <h2>WELCOME BACK.</h2>
+        <p>Sign in to continue your exploration.</p>
+      </div>
+
+      <form id="loginForm">
+        <label for="loginEmail">EMAIL ADDRESS</label>
+        <input id="loginEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="loginPassword">PASSWORD</label>
+        <input id="loginPassword" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="6">
+
+        <button class="auth-submit" type="submit">
+          <span>ACCESS GEOWORLD</span><span>↗</span>
+        </button>
+
+        <p class="form-message" id="loginMessage" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="auth-switch">
+        NEW TO THE PLANET?
+        <a href="signup.html">CREATE AN ACCOUNT ↗</a>
+      </div>
+
+      <div class="card-bottom">GEOWORLD ULTIMATE <span>·</span> EXPLORER ACCESS</div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>© 2026 GEOWORLD</span>
+    <span>EXPLORE BEYOND LIMITS.</span>
+  </footer>
+</body>
+</html>

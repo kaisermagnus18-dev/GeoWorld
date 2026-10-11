@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03070b">
+  <title>GEOWORLD | Create Explorer Account</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="login.css">
+  <script type="module" src="login.js"></script>
+</head>
+<body>
+  <div class="background-grid"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="auth-nav">
+    <a class="brand" href="signup.html">
+      <span>GEO</span>WORLD <b>◎</b>
+    </a>
+    <span class="nav-status"><i></i> REGISTRATION SYSTEM ONLINE</span>
+  </header>
+
+  <main class="auth-layout signup-layout">
+    <section class="auth-intro">
+      <div class="eyebrow"><span></span> GEOWORLD / NEW EXPLORER</div>
+      <h1>DISCOVER MORE.<br><span>KNOW MORE.</span></h1>
+      <p>Create your explorer identity and begin discovering countries, landmarks, natural wonders and the science of our planet.</p>
+
+      <div class="planet-visual" aria-hidden="true">
+        <div class="planet-orbit orbit-a"></div>
+        <div class="planet-orbit orbit-b"></div>
+        <div class="planet-orbit orbit-c"></div>
+        <div class="planet">
+          <div class="planet-surface"></div>
+          <div class="planet-shade"></div>
+        </div>
+        <span class="planet-label label-a">NEW EXPLORER</span>
+        <span class="planet-label label-b">MISSION READY</span>
+      </div>
+
+      <div class="intro-footer">
+        <span>CREATE PROFILE</span>
+        <span>START AT LEVEL 1</span>
+        <span>EARN XP</span>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="card-topline">
+        <span>CREATE YOUR IDENTITY</span>
+        <span class="secure-mark">✳ SECURE</span>
+      </div>
+
+      <div class="card-heading">
+        <div class="mini-symbol">✳</div>
+        <h2>JOIN THE EXPLORERS.</h2>
+        <p>Set up your GEOWORLD account.</p>
+      </div>
+
+      <form id="signupForm">
+        <label for="signupUsername">EXPLORER NAME</label>
+        <input id="signupUsername" name="username" type="text" placeholder="Choose a username" autocomplete="nickname" required minlength="3" maxlength="24">
+
+        <label for="signupEmail">EMAIL ADDRESS</label>
+        <input id="signupEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="signupPassword">PASSWORD</label>
+        <input id="signupPassword" name="password" type="password" placeholder="At least 6 characters" autocomplete="new-password" required minlength="6">
+
+        <label for="signupConfirmPassword">CONFIRM PASSWORD</label>
+        <input id="signupConfirmPassword" name="confirmPassword" type="password" placeholder="Enter password again" autocomplete="new-password" required minlength="6">
+
+        <button class="auth-submit" type="submit">
+          <span>CREATE EXPLORER ACCOUNT</span><span>↗</span>
+        </button>
+
+        <p class="form-message" id="signupMessage" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="auth-switch">
+        ALREADY AN EXPLORER?
+        <a href="login.html">SIGN IN ↗</a>
+      </div>
+
+      <div class="card-bottom">GEOWORLD ULTIMATE <span>·</span> BEGIN YOUR JOURNEY</div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>© 2026 GEOWORLD</span>
+    <span>ONE PLANET. INFINITE DISCOVERIES.</span>
+  </footer>
+</body>
+</html>
